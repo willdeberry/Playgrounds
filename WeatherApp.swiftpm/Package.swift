@@ -16,6 +16,8 @@ let package = Package(
         .iOSApplication(
             name: "Weather App",
             targets: ["AppModule"],
+            bundleIdentifier: "com.sudoservers.weatherApp",
+            teamIdentifier: "UVAVM9VF2P",
             displayVersion: "1.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",

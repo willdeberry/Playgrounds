@@ -16,6 +16,8 @@ let package = Package(
         .iOSApplication(
             name: "Apple Frameworks",
             targets: ["AppModule"],
+            bundleIdentifier: "com.sudoservers.appleFrameworks",
+            teamIdentifier: "UVAVM9VF2P",
             displayVersion: "1.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
