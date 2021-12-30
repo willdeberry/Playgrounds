@@ -1,32 +1,33 @@
 import SwiftUI
 
 struct FrameworkDetailView: View {
-    var framework: Framework
-    @Binding var isShowingDetailView: Bool
-    @State private var isShowingSafariView = false
+    @ObservedObject var viewModel: FrameworkDetailViewModel
     
     var body: some View {
         VStack {
-            XDismissButton(isShowingDetailView: $isShowingDetailView)
+            XDismissButton(isShowingDetailView: $viewModel.isShowingDetailView.wrappedValue)
             Spacer()
-            FrameworkTitleView(framework: framework)
-            Text(framework.description)
+            FrameworkTitleView(framework: viewModel.framework)
+            Text(viewModel.framework.description)
                 .font(.body)
                 .padding()
             Spacer()
-            Button {
-                isShowingSafariView = true
-            } label: {
-//                AFButton(title: "Learn More")
+            Link(destination: URL(string: viewModel.framework.urlString) ?? URL(string: "www.apple.com")!) { 
                 Label("Learn More", systemImage: "book.fill")
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .tint(.red)
+//            Button {
+//                viewModel.isShowingSafariView = true
+//            } label: {
+////                AFButton(title: "Learn More")
+//                Label("Learn More", systemImage: "book.fill")
+//            }
+//            .buttonStyle(.borderedProminent)
+//            .controlSize(.large)
+//            .tint(.red)
         }
-        .sheet(isPresented: $isShowingSafariView) {
-            SafariView(url: URL(string: framework.urlString) ?? URL(string: "www.apple.com")!)
-        }
+//        .sheet(isPresented: $viewModel.isShowingSafariView) {
+//            SafariView(url: URL(string: viewModel.framework.urlString) ?? URL(string: "www.apple.com")!)
+//        }
         .padding()
     }
 }
